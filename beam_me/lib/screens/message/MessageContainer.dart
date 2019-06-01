@@ -1,7 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+
+import 'package:firebase_database/firebase_database.dart';
+
 
 class MessageContainer extends StatefulWidget {
+  static String userName;
+
+  const MessageContainer({Key key, userName}): super(key: key);
+
   @override
   MessageContainerState createState() => new MessageContainerState();
 }
@@ -37,10 +45,10 @@ class MessageContainerState extends State<MessageContainer> {
               new RaisedButton(
                 child: new Text("Send"),
                 onPressed: (){
-//                  setState((){
-//                   //sample
-//                    hintText.text = ""
-//                  });
+                  if(controller.text.length > 0) {
+                    SaveDB.createRecord(controller.text, MessageContainer.userName);
+                    controller.text = "";
+                  }
                 },
               ),
               new Text(results)
@@ -50,4 +58,19 @@ class MessageContainerState extends State<MessageContainer> {
       ),
     );
   }
+}
+
+class SaveDB {
+
+  static var databaseReference = FirebaseDatabase.instance.reference();
+
+  static void createRecord(String message, String user){
+    databaseReference.child("message").push().set({
+      'language': ui.window.locale.languageCode,
+      'message': message,
+      'timestamp' :  DateTime.now().toString(),
+      'user': user
+    });
+  }
+
 }

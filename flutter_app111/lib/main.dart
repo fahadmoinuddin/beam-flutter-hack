@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:beam_me/screens/message/MessageContainer.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MessageContainer()
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
