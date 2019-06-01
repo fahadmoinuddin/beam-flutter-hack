@@ -9,11 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:beam_me/main.dart';
+import 'package:beam_me/screens/auth/login_signup.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(LoginSignupPage());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
