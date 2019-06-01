@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'Message.dart';
 import 'package:firebase_mlkit_language/firebase_mlkit_language.dart';
+import 'package:translator/translator.dart';
 
 class ListTranslate extends StatefulWidget {
   ListTranslate({Key key}) : super(key: key);
   final LanguageIdentifier languageIdentifier = FirebaseLanguage.instance.languageIdentifier();
 
-//  void _processText() {
-//    final ModelManager modelManager = FirebaseLanguage.instance.modelManager();
-//    FirebaseLanguage.instance.modelManager().downloadModel("en");
-//    final List<LanguageLabel> labels = await languageIdentifier.processText("Sample");
-//  };
+  Future<List<Message>> _processText(List<Message> messages) async {
+    List<Message> result = new List<Message>();
+    GoogleTranslator _translator = GoogleTranslator();
+    for (Message message in messages) {
+      String translatedMessage = await _translator.translate(message.text,
+                                                            from: message.fromLanguage,
+                                                            to: "en");
+
+      result.add(Message(translatedMessage, message.text));
+    }
+    return result;
+  }
 
   @override
   _ListTranslateState createState() => _ListTranslateState();
-
 
 }
 

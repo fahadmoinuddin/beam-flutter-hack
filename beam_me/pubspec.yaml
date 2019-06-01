@@ -23,6 +23,7 @@ dependencies:
   firebase_database: ^3.0.2
   firebase_auth: ^0.11.1+5
   firebase_mlkit_language: ^1.0.1
+  translator: ^0.1.0+7
 
 
 dev_dependencies:
