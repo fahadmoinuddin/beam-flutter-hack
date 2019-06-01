@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "923231878297",
+    "firebase_url": "https://beam-fbe02.firebaseio.com",
+    "project_id": "beam-fbe02",
+    "storage_bucket": "beam-fbe02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923231878297:android:0d1ffbb44fd5f90e",
+        "android_client_info": {
+          "package_name": "beamme.com.au.beamme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923231878297-fn8p5pcse5n6g15vs5sau8b1a1nodec0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "beamme.com.au.beamme",
+            "certificate_hash": "d7961d8bb984c6d888b9aaa691752147d18b00b7"
+          }
+        },
+        {
+          "client_id": "923231878297-kv4siik7ctpht943bn8erqd9ojj1r455.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuBgFXY1hBS14jLOcc-bltW3npGaHGN-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923231878297-kv4siik7ctpht943bn8erqd9ojj1r455.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
