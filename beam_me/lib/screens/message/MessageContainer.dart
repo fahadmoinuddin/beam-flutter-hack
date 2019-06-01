@@ -46,7 +46,7 @@ class MessageContainerState extends State<MessageContainer> {
                 child: new Text("Send"),
                 onPressed: (){
                   if(controller.text.length > 0) {
-                    SaveDB.createRecord(controller.text, MessageContainer.userName);
+                    DbOperations.createRecord(controller.text, MessageContainer.userName);
                     controller.text = "";
                   }
                 },
@@ -60,7 +60,7 @@ class MessageContainerState extends State<MessageContainer> {
   }
 }
 
-class SaveDB {
+class DbOperations {
 
   static var databaseReference = FirebaseDatabase.instance.reference();
 
@@ -71,6 +71,10 @@ class SaveDB {
       'timestamp' :  DateTime.now().toString(),
       'user': user
     });
+  }
+
+  static Stream<DataSnapshot>  getData(){
+    return databaseReference.once().asStream();
   }
 
 }
