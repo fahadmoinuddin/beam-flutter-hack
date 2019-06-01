@@ -1,70 +1,33 @@
 import 'package:flutter/material.dart';
 import 'Message.dart';
 import 'package:firebase_mlkit_language/firebase_mlkit_language.dart';
+import 'package:translator/translator.dart';
+import '../../screens/message/MessageContainer.dart';
 
 class ListTranslate extends StatefulWidget {
   ListTranslate({Key key}) : super(key: key);
   final LanguageIdentifier languageIdentifier = FirebaseLanguage.instance.languageIdentifier();
 
-//  void _processText() {
-//    final ModelManager modelManager = FirebaseLanguage.instance.modelManager();
-//    FirebaseLanguage.instance.modelManager().downloadModel("en");
-//    final List<LanguageLabel> labels = await languageIdentifier.processText("Sample");
-//  };
+  Future<List<Message>> _processText(List<Message> messages) async {
+    List<Message> result = new List<Message>();
+    GoogleTranslator _translator = GoogleTranslator();
+    for (Message message in messages) {
+      String translatedMessage = await _translator.translate(message.text,
+                                                            from: message.fromLanguage,
+                                                            to: "en");
+
+      result.add(Message(translatedMessage, message.text));
+    }
+    return result;
+  }
 
   @override
   _ListTranslateState createState() => _ListTranslateState();
 
-
 }
 
 class _ListTranslateState extends State<ListTranslate> {
-  List<Message> _items = [
-    Message(
-      "I'm trying to leave the text in the top of the container, but even with FractionalOffset(1.0, 0.0) the text continues in the middle of the container.",
-      "jaunâtre",
-    ),
-    Message(
-      "I'm trying to leave the text in the top of the container, but even with FractionalOffset(1.0, 0.0) the text continues in the middle of the container.",
-      "cracher",
-    ),
-    Message(
-      "pour combler",
-      "to fill",
-    ),
-    Message(
-      "frisson",
-      "thrill",
-    ),
-    Message(
-      "chime",
-      "carillon",
-    ),
-    Message(
-      "gaz de chiste",
-      "shale gas",
-    ),
-    Message(
-      "a bold statement",
-      "une déclaration audacieuse",
-    ),
-    Message(
-      "slick",
-      "nappe",
-    ),
-    Message(
-      "sketch",
-      "dessin",
-    ),
-    Message(
-      "sketch",
-      "dessin",
-    ),
-    Message(
-      "serve",
-      "desservir",
-    ),
-  ];
+  List<Message> _items = DbOperations.getData();
 
   Widget _displayCard(int index) {
     bool _isOdd = (index % 2 == 1);
