@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'widgets/translate/translate.dart';
+import 'screens/message/MessageContainer.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MessageContainer(),
+
     );
   }
 }

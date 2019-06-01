@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
+import 'package:beam_me/widgets/translate/Message.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 
 
@@ -73,8 +75,14 @@ class DbOperations {
     });
   }
 
-  static Stream<DataSnapshot>  getData(){
-    return databaseReference.once().asStream();
+  static List<Message> getData(){
+    List<Message> messages = new List<Message>();
+    databaseReference.once().then((DataSnapshot snapshot) {
+      print('Data : ${snapshot.value}');
+      Message message = new Message(snapshot.value["message"], "");
+      messages.add(message);
+    });
+    return messages;
   }
 
 }
