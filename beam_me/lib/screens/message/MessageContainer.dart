@@ -79,7 +79,7 @@ class DbOperations {
     List<Message> messages = new List<Message>();
     databaseReference.once().then((DataSnapshot snapshot) {
       print('Data : ${snapshot.value}');
-      Message message = new Message(snapshot.value["message"], "");
+      Message message = new Message(snapshot.value["message"].toString(), "");
       messages.add(message);
     });
     return messages;
